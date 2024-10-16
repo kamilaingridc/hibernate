@@ -1,22 +1,22 @@
 package br.ETS.hibernate;
 
-import javax.persistence.EntityManager; // Importa a classe EntityManager para gerenciar entidades
+import javax.persistence.EntityManager;
+import javax.persistence.PostRemove;
 
 public class Main {
     public static void main(String[] args) {
-        // Obtém uma nova instância de EntityManager utilizando JPAUtil
         EntityManager entityManager = JPAUtil.getEntityManager();
-
-        // Cria uma instância do MaterialDAO, passando o EntityManager
         MaterialDAO materialDAO = new MaterialDAO(entityManager);
 
-        // Busca o fornecedor pelo nome
-        var precoPorNome = materialDAO.buscaFornecedorPorNome("LeoStore");
+        var buscaFornecedorPorNome = materialDAO.buscaPorFornecedor("LeoStore");
+        System.out.println(buscaFornecedorPorNome);
 
-        // Imprime o resultado da busca
-        System.out.println(precoPorNome);
+//        Categoria escritorio = new Categoria("ESCRITORIO");
+//        CategoriaDAO categoriaDAO = new CategoriaDAO(entityManager);
+//        Material material = new Material(new MaterialDTO("Caneta", "Só Canetas", 600, escritorio));
 
-        // Fecha o EntityManager para liberar recursos
-        entityManager.close(); // Certifique-se de fechar o EntityManager ao final do uso
+
+
+
     }
 }
